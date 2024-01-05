@@ -6,7 +6,7 @@ from django.views import View
 
 
 class Songlist(View):
-    template_name = "song/home.html"
+    template_name = "song/index.html"
     def get(self, request):
         return render(request, self.template_name)
     
