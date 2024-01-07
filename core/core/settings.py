@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'song',
-    'crispy_bootstrap5',
+    'django_cleanup.apps.CleanupConfig',
+
 ]
 
 MIDDLEWARE = [

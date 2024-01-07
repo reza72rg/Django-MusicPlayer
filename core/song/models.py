@@ -49,11 +49,15 @@ class Category(models.Model):
 
 class Artist(MainModel):
     image = models.ImageField(upload_to=UploadToPathAndRename("artist"),default='artist/default.jpg')
-    title = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return self.name
     
 class Song(models.Model):
     image = models.ImageField(upload_to=UploadToPathAndRename("song"),default='song/default.jpg')
     title = models.CharField(max_length=255)
+    author = models.ForeignKey(User,on_delete=models.SET_NULL,null=True, related_name='song_author')
     artist = models.ForeignKey(Artist, on_delete= models.CASCADE, related_name="relate_song")
     audio = models.FileField(blank=True,null=True)
     slug = models.SlugField(null=True,blank=True,unique=True)
@@ -66,7 +70,7 @@ class Song(models.Model):
     class Meta:
         ordering = ('created_date',)
     def save (self, force_insert = False, force_update=False, using=None,update_fields=None):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.title[:5])
         super(Song,self).save()
     def __str__(self):
         return self.title
