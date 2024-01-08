@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+	
+	
+	<h3>Here are all of the all songs:</h3>
+
+	<div class="row">
+    	{% for song in all_song %}
+    	<div class="col s12 m6 l4">
+    		
+	      <div class="card">
+	        <div class="card-image">
+	     
+            <a href="{% url 'song:play_song' song.id %}"><img src="{{ song.image.url }} " alt=""></a>
+	        </div>
+	        <div class="card-content">
+	        	<span class="card-title truncate">{{ song.artist }}</span>
+				<p>{{ song.title }}</p>
+				
+	          
+	         
+	        </div>
+	      </div>
+	      
+    	</div>
+    	{% endfor %}
+  </div>
+
+{% endblock %}
