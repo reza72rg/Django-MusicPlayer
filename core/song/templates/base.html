@@ -35,6 +35,12 @@
 	      <ul class="sidenav" id="mobile-demo">
 	        <li><a href="{% url 'song:home' %}" id="layOut"><i class="material-icons">album</i>Albums</a></li>
 	        <li><a href="{% url 'song:all_song' %}" id="layOut"><i class="material-icons">music_note</i>Songs</a></li>
+			{% if request.user.is_authenticated %}
+			<li><a href="{% url 'accounts:logout' %}" id="layOut"><i class="material-icons">power_settings_new</i>Log Out</a></li>
+			{% else %}
+			<li><a href="{% url 'accounts:login' %}" id="layOut"><i class="material-icons">power_settings_new</i>Log In</a></li>
+			<li><a href="{% url 'accounts:register' %}" id="layOut"><i class="material-icons">power_settings_new</i>Register</a></li>
+        	{% endif %}
 	        
 	      </ul>
 	    </div>

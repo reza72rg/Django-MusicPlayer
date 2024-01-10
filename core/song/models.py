@@ -60,6 +60,7 @@ class Song(models.Model):
     author = models.ForeignKey(User,on_delete=models.SET_NULL,null=True, related_name='song_author')
     artist = models.ForeignKey(Artist, on_delete= models.CASCADE, related_name="relate_song")
     audio = models.FileField(blank=True,null=True)
+    lyric = models.TextField(null=True , blank = True)
     slug = models.SlugField(null=True,blank=True,unique=True)
     category = models.ManyToManyField(Category)
     count_view = models.IntegerField(default=0)

@@ -39,8 +39,11 @@
 -->
 	<div class="col s12 m12 l8">
 	<div class="row">
-		<audio controls=""  name="media" style="margin-left: 20px;margin-bottom: 10px;width: 1230px;height:30px"><source src="{{song.audio.url}}" type="audio/mpeg" ></audio>
-		
+		<audio controls=""  name="media" style="margin-left: 20px;margin-bottom: 10px;width: 600px;height:50px"><source src="{{song.audio.url}}" type="audio/mpeg" ></audio>
+	</div>
+	<p>
+	{{song.lyric|safe}}
+	</p>
 	</div>
 	
 			

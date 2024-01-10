@@ -12,7 +12,7 @@
 	      <div class="card">
 	        <div class="card-image">
 	     
-            <a href="{% url 'song:play_song' song.id %}"><img src="{{ song.image.url }} " alt=""></a>
+            <a href="{% url 'song:play_song' song.id %}"><img src="{{ song.image.url }} " alt="" style="width: 250px; height: 250px;" ></a>
 	        </div>
 	        <div class="card-content">
 	        	<span class="card-title truncate">{{ song.artist }}</span>
