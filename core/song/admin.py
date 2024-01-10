@@ -14,10 +14,10 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Artist)
 class ArtistAdmin(admin.ModelAdmin):
     def get_fields(self, request, obj=None):
-        return ["image","name"]
+        return ["image","name","status"]
         
     def get_list_display(self, request):
-        return ["name"]
+        return ["name","status"]
   
 @admin.register(Song)
 class SongAdmin(SummernoteModelAdmin):

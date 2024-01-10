@@ -2,17 +2,20 @@ from django.shortcuts import render
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic.edit import CreateView
 from django.views import View
 from song.models import Song, Artist
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
 
 class HomeList(ListView):
-    model = Artist
+    # model = Artist
     context_object_name = "all_artist"
     template_name = "song/index.html"
-
+    queryset = Artist.objects.filter(status = True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -56,3 +59,34 @@ class Searchview(View):
         songs = songs.filter(title__icontains=q)
         context = {'all_song':songs}
         return render (request , "song/all-song.html",context)
+
+
+'''class ArtistCreateView(LoginRequiredMixin, CreateView):
+    model = Artist
+    template_name = 'song/createartist.html'
+    fields = ['image', 'name']
+    success_url = reverse_lazy('song:home')
+
+    def form_valid(self, form):
+        artist = form.save(commit=False)
+        artist.status = False
+        artist.save()
+        return super().form_valid(form)
+    
+
+class SongCreateView(LoginRequiredMixin, CreateView):
+    model = Song
+    template_name = 'song/createsong.html'
+    fields = ['image', 'title',"artist","audio","lyric"]
+    success_url = reverse_lazy('song:home')
+
+    def form_valid(self, form):
+        form.instance.author_id = self.request.user.id
+        return super(SongCreateView, self).form_valid(form)
+ 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["artist"] = Artist.objects.filter(status=True)
+        return context
+    
+'''

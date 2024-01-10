@@ -10,4 +10,6 @@ urlpatterns = [
     path('artist-choice/<int:artist_id>/', ChoiceArtist.as_view(), name='artist_choice'),
     path('play_song/<int:pk>/', PlaySong.as_view(), name='play_song'),
     path('search/',Searchview.as_view(),name ='search'),
+    # path('createartist/',ArtistCreateView.as_view(),name="artist_create"),
+    # path('createsong/',SongCreateView.as_view(),name="song_create")
 ]
