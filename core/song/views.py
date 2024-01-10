@@ -37,3 +37,13 @@ class ChoiceArtist(View):
        
         context = {'all_songs':songs}
         return render (request , 'song/songs.html',context)
+    
+class Searchview(View):
+    def get(self,request):
+        songs = Song.objects.filter(status=1)
+        q = request.GET.get('q')
+        print(q)
+        songs = songs.filter(title__icontains=q)
+        print(songs)
+        context = {'all_song':songs}
+        return render (request , "song/all-song.html",context)

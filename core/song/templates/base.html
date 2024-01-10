@@ -25,9 +25,9 @@
 	      <a href="" class="brand-logo center hide-on-large-only show-on-medium-and-down" id="layOut"><i class="fa fa-rebel" id="fontAwIcon" aria-hidden="true"></i>ST</a>
 	      <a href="#" data-target="mobile-demo" class="sidenav-trigger left" id="layOut"><i class="material-icons">menu</i></a>
 	      <a href="#" data-target="mobile-demo" class="sidenav-trigger show-on-large hide-on-med-and-down right" id="layOut"><i class="material-icons">menu</i></a>
-	      <form class="left hide-on-med-and-down">
+	      <form class="left hide-on-med-and-down" id="search_form" name="gs" method="GET" action="{% url 'song:search' %}">
 	        <div class="input-field">
-	          <input id="search" type="search" required>
+	          <input id="search" type="search" type="text" name="q" required>
 	          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
 	         
 	        </div>
@@ -36,6 +36,7 @@
 	        <li><a href="{% url 'song:home' %}" id="layOut"><i class="material-icons">album</i>Albums</a></li>
 	        <li><a href="{% url 'song:all_song' %}" id="layOut"><i class="material-icons">music_note</i>Songs</a></li>
 			{% if request.user.is_authenticated %}
+			<li><a href="" id="layOut"><i class="material-icons"></i>{{request.user.username}}</a></li>
 			<li><a href="{% url 'accounts:logout' %}" id="layOut"><i class="material-icons">power_settings_new</i>Log Out</a></li>
 			{% else %}
 			<li><a href="{% url 'accounts:login' %}" id="layOut"><i class="material-icons">power_settings_new</i>Log In</a></li>
